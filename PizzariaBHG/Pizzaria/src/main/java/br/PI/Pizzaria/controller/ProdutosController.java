@@ -16,11 +16,5 @@ class ProdutosController {
         return "produtosEstoquista"; // Retorna o nome do template HTML
     }
 
-    @GetMapping("/cadastroProdutos")
-    public String cadastroProdutos() {
-        return "cadastroProdutos";
-
-
-    }
 
 }

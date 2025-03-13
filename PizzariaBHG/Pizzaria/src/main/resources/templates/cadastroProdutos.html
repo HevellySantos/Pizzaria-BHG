@@ -15,8 +15,8 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
-            padding: 20px;
+            height: 100vh;
+            margin: 0;
         }
 
         .container {
@@ -32,7 +32,6 @@
             text-align: center;
             color: #b30e0e;
             font-weight: 700;
-            font-size: 1.8rem;
         }
 
         .btn-custom {
@@ -74,7 +73,6 @@
             flex-wrap: wrap;
             gap: 10px;
             margin-top: 10px;
-            justify-content: center;
         }
 
         .image-preview img {
@@ -89,27 +87,6 @@
         .selected {
             border: 2px solid #198c05 !important;
         }
-
-        /* Responsividade */
-        @media (max-width: 768px) {
-            .container {
-                padding: 15px;
-            }
-
-            h1 {
-                font-size: 1.5rem;
-            }
-
-            .btn-custom {
-                font-size: 14px;
-                padding: 8px;
-            }
-
-            .image-preview img {
-                width: 60px;
-                height: 60px;
-            }
-        }
     </style>
 </head>
 <body>
@@ -123,7 +100,7 @@
         </div>
 
         <div class="mb-3">
-            <label for="avaliacao" class="form-label">Avaliação ⭐⭐⭐⭐⭐</label>
+            <label for="avaliacao" class="form-label">Avaliação (1 a 5) ⭐⭐⭐⭐⭐</label>
             <select id="avaliacao" class="form-control" onchange="atualizarEstrelas()">
                 <option value="1">⭐ 1.0</option>
                 <option value="1.5">⭐✨ 1.5</option>
@@ -158,7 +135,7 @@
             <div class="image-preview" id="imagePreview"></div>
         </div>
 
-        <div class="d-grid gap-2">
+        <div class="d-flex justify-content-between">
             <button type="submit" class="btn btn-success btn-custom">Salvar</button>
             <button type="button" class="btn btn-secondary btn-custom" onclick="window.location.href='/listar-produtos'">Cancelar</button>
         </div>
@@ -198,8 +175,15 @@
 
     document.getElementById('produtoForm').addEventListener('submit', function(event) {
         event.preventDefault();
-
+        
+        let nome = document.getElementById('nomeProduto').value;
+        let avaliacao = document.getElementById('avaliacao').value;
+        let descricao = document.getElementById('descricao').value;
+        let preco = document.getElementById('preco').value;
+        let quantidade = document.getElementById('quantidade').value;
+        let imagens = document.getElementById('imagens').files;
         let principal = document.querySelector('.image-preview .selected');
+
         if (!principal) {
             alert('Selecione uma imagem principal.');
             return;
