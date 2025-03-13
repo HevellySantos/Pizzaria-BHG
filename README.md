@@ -15,6 +15,9 @@ Tela de Acesso Negado:
 
 ![Tela de Acesso Negado](Telas/acesso_negado.png)
 
+Tela de BackOffice Admin:
+
+
 ![Tela de BackOffice Admin](Telas/adminDashboard.png)
 
 Tela de BackOffice Estoquista :
