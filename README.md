@@ -8,3 +8,7 @@ Tela de Login:
 
 Tela de Cadastro:
 ![Tela de Login](Telas/cadastroUsuario.png)
+
+Tela de Acesso Negado:
+![Tela de Acesso Negado](Telas/acesso_negado.png)
+
