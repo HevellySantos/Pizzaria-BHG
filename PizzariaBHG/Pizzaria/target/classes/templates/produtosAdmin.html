@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Produtos Admin</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background: white;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 12px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        h1 {
+            text-align: center;
+            color: #b30e0e;
+            font-weight: 700;
+            margin-bottom: 20px;
+            font-size: 2rem;
+            word-wrap: break-word; /* Quebra o texto se for muito longo */
+        }
+
+        .table thead {
+            background-color: #198c05;
+            color: white;
+        }
+
+        .table th, .table td {
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .pagination {
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        /* Responsividade para telas pequenas */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.5rem; /* Tamanho menor do título para telas pequenas */
+            }
+        }
+
+        /* Responsividade para telas muito pequenas */
+        @media (max-width: 576px) {
+            h1 {
+                font-size: 1.2rem; /* Tamanho ainda menor para telas muito pequenas */
+            }
+        }
+
+        /* Ajustando o campo de pesquisa e botão de adicionar produto */
+        .d-flex input, .d-flex button {
+            margin-bottom: 10px;
+        }
+
+        /* Ajustes no layout da pesquisa para telas maiores */
+        @media (min-width: 576px) {
+            .d-flex .form-control {
+                width: auto; /* Para evitar que ocupe toda a largura em telas grandes */
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1 class="mb-4">Lista de Produtos</h1>
+
+    <div class="d-flex flex-column flex-md-row justify-content-between mb-3">
+        <div class="d-flex flex-column flex-sm-row">
+            <input type="text" id="search" class="form-control d-inline-block w-auto" placeholder="Procurar produto...">
+            <button class="btn btn-outline-primary btn-sm mt-2 mt-sm-0 ms-0 ms-sm-2">🔍</button>
+        </div>
+        <button class="btn btn-outline-secondary mt-3" onclick="window.location.href='/cadastroProdutos'"> Cadastrar Produto</button>
+
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-bordered" id="productTable">
+            <thead>
+            <tr>
+                <th>Código</th>
+                <th>Nome</th>
+                <th>Quantidade</th>
+                <th>Valor</th>
+                <th>Status</th>
+                <th>Editar</th>
+                <th>Ativar/Desativar</th>
+                <th>Visualizar</th>
+            </tr>
+            </thead>
+            <tbody id="productBody">
+            <!-- Produtos serão inseridos via JavaScript -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Paginação -->
+    <nav>
+        <ul class="pagination" id="pagination"></ul>
+    </nav>
+
+    <button class="btn btn-outline-secondary mt-3" onclick="window.location.href='/login'"> Voltar ao Início</button>
+</div>
+
+<script>
+    const products = [
+        {id: 1, name: "Pizza Portuguesa", quantity: 10, price: "R$ 30,00", status: "Ativo"},
+        {id: 2, name: "Pizza Calabresa", quantity: 5, price: "R$ 25,00", status: "Desativado"},
+        {id: 3, name: "Guaraná", quantity: 20, price: "R$ 15,00", status: "Ativo"},
+        {id: 4, name: "Refrigerante Cola", quantity: 15, price: "R$ 12,00", status: "Ativo"},
+        {id: 5, name: "Pizza Quatro Queijos", quantity: 8, price: "R$ 35,00", status: "Ativo"},
+        {id: 6, name: "Pizza Marguerita", quantity: 7, price: "R$ 32,00", status: "Ativo"},
+        {id: 7, name: "Suco Natural", quantity: 12, price: "R$ 10,00", status: "Ativo"},
+        {id: 8, name: "Água Mineral", quantity: 30, price: "R$ 5,00", status: "Ativo"},
+        {id: 9, name: "Pizza Frango com Catupiry", quantity: 9, price: "R$ 33,00", status: "Ativo"},
+        {id: 10, name: "Pizza Vegetariana", quantity: 6, price: "R$ 29,00", status: "Ativo"},
+        {id: 11, name: "Pizza Chocolate", quantity: 4, price: "R$ 27,00", status: "Ativo"}
+    ];
+
+    const itemsPerPage = 10;
+    let currentPage = 1;
+
+    function renderTable(page) {
+        const start = (page - 1) * itemsPerPage;
+        const end = start + itemsPerPage;
+        const visibleProducts = products.slice(start, end);
+
+        const tbody = document.getElementById("productBody");
+        tbody.innerHTML = "";
+
+        visibleProducts.forEach(product => {
+            const row = `<tr>
+                <td>${product.id}</td>
+                <td>${product.name}</td>
+                <td>${product.quantity}</td>
+                <td>${product.price}</td>
+                <td><span class="badge bg-${product.status === "Ativo" ? "success" : "danger"}">${product.status}</span></td>
+                <td><button class="btn btn-primary btn-sm">Editar</button></td>
+                <td><button class="btn btn-${product.status === "Ativo" ? "danger" : "success"} btn-sm">${product.status === "Ativo" ? "Desativar" : "Ativar"}</button></td>
+                <td><button class="btn btn-primary btn-sm">Visualizar</button></td>
+            </tr>`;
+            tbody.innerHTML += row;
+        });
+    }
+
+    function renderPagination() {
+        const totalPages = Math.ceil(products.length / itemsPerPage);
+        const pagination = document.getElementById("pagination");
+        pagination.innerHTML = "";
+
+        for (let i = 1; i <= totalPages; i++) {
+            pagination.innerHTML += `<li class="page-item ${i === currentPage ? "active" : ""}"><a class="page-link" href="#" onclick="changePage(${i})">${i}</a></li>`;
+        }
+    }
+
+    function changePage(page) {
+        currentPage = page;
+        renderTable(currentPage);
+        renderPagination();
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        renderTable(currentPage);
+        renderPagination();
+    });
+</script>
+
+
+
+</body>
+</html>
