@@ -1,5 +1,5 @@
 # Pizzaria-BHG
-Repositório referente ao nosso Projeto do PI do 4º semestre, modificações
+Repositório referente ao nosso Projeto do PI do 4º semestre
 
 # Aqui estão listadas as telas do nosso projeto:
 
