@@ -1,0 +1,251 @@
+<header class="header">
+    <!-- Logo -->
+    <div>
+        <img src="logo.png" alt="Logo da Pizzaria BHG" class="logo">
+    </div>
+
+    <!-- Ícone de menu mobile -->
+    <div class="menu-mobile" onclick="toggleMenu()">☰</div>
+
+    <!-- Links do Menu -->
+    <nav class="nav">
+        <a href="#">Início</a>
+        <a href="#">Cardápio</a>
+        <a href="#">Promoções</a>
+        <a href="#">Contato</a>
+    </nav>
+
+    <!-- Carrinho e Login -->
+    <div class="carrinho-login">
+        <a href="#" onclick="abrirCarrinho()" class="carrinho">🛒 (<span id="quantidade-carrinho">0</span>)</a>
+        <a href="#" class="botao-login">Login</a>
+    </div>
+</header>
+
+<!-- Modal do Carrinho -->
+<div id="modal-carrinho" class="modal">
+    <div class="modal-conteudo">
+        <span class="fechar" onclick="fecharCarrinho()">&times;</span>
+        <h2>Seu Carrinho</h2>
+        <ul id="lista-carrinho"></ul>
+        <button onclick="limparCarrinho()" class="botao-limpar">Esvaziar Carrinho</button>
+    </div>
+</div>
+
+<style>
+    /* Estilos gerais */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+    }
+
+    /* Estilo do Header */
+    .header {
+        background-color: #C4C4C4;
+        padding: 10px 5%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 5px solid #d32f2f;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+        height: 80px;
+    }
+
+    .logo {
+        height: 60px;
+        max-width: 100%;
+    }
+
+    .nav {
+        display: flex;
+        gap: 20px;
+    }
+
+    .nav a {
+        text-decoration: none;
+        color: #d32f2f;
+        font-weight: bold;
+        font-size: 18px;
+        transition: color 0.3s;
+    }
+
+    .carrinho-login {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .carrinho {
+        text-decoration: none;
+        color: #d32f2f;
+        font-size: 24px;
+        padding: 10px;
+        border: 2px solid #d32f2f;
+        border-radius: 8px;
+        transition: background 0.3s, color 0.3s;
+    }
+
+    .botao-login {
+        text-decoration: none;
+        color: #fff;
+        font-weight: bold;
+        font-size: 16px;
+        padding: 10px 15px;
+        background: #d32f2f;
+        border-radius: 8px;
+        transition: background 0.3s, color 0.3s;
+    }
+
+    /* Estilos do Modal do Carrinho */
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1001;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        justify-content: center;
+        align-items: center;
+    }
+
+    .modal-conteudo {
+        background-color: white;
+        padding: 20px;
+        border-radius: 10px;
+        width: 90%;
+        max-width: 400px;
+        text-align: center;
+        position: relative;
+    }
+
+    .fechar {
+        position: absolute;
+        top: 10px;
+        right: 20px;
+        font-size: 24px;
+        cursor: pointer;
+    }
+
+    .botao-limpar {
+        background: #d32f2f;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        cursor: pointer;
+        margin-top: 10px;
+        border-radius: 5px;
+    }
+
+    /* Menu Mobile */
+    .menu-mobile {
+        display: none;
+        font-size: 30px;
+        cursor: pointer;
+        color: #d32f2f;
+    }
+
+    /* Responsividade */
+    @media (max-width: 768px) {
+        .nav {
+            display: none;
+            flex-direction: column;
+            position: absolute;
+            top: 80px;
+            left: 0;
+            width: 100%;
+            background: white;
+            text-align: center;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav a {
+            padding: 15px;
+            display: block;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .menu-mobile {
+            display: block;
+        }
+
+        .carrinho-login {
+            gap: 10px;
+        }
+
+        .carrinho {
+            font-size: 22px;
+            padding: 8px;
+        }
+
+        .botao-login {
+            font-size: 14px;
+            padding: 8px 12px;
+        }
+
+        .modal-conteudo {
+            width: 90%;
+            max-width: 300px;
+        }
+    }
+</style>
+
+<script>
+    function abrirCarrinho() {
+        document.getElementById("modal-carrinho").style.display = "flex";
+        atualizarCarrinho();
+    }
+
+    function fecharCarrinho() {
+        document.getElementById("modal-carrinho").style.display = "none";
+    }
+
+    function toggleMenu() {
+        let menu = document.querySelector(".nav");
+        if (menu.style.display === "flex") {
+            menu.style.display = "none";
+        } else {
+            menu.style.display = "flex";
+        }
+    }
+
+    let carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
+
+    function atualizarCarrinho() {
+        document.getElementById("quantidade-carrinho").innerText = carrinho.length;
+        let lista = document.getElementById("lista-carrinho");
+        lista.innerHTML = "";
+
+        carrinho.forEach((item, index) => {
+            let li = document.createElement("li");
+            li.innerHTML = `${item} <button onclick="removerItem(${index})" style="color: red; cursor: pointer;">X</button>`;
+            lista.appendChild(li);
+        });
+
+        localStorage.setItem("carrinho", JSON.stringify(carrinho));
+    }
+
+    function adicionarAoCarrinho(produto) {
+        carrinho.push(produto);
+        atualizarCarrinho();
+    }
+
+    function removerItem(index) {
+        carrinho.splice(index, 1);
+        atualizarCarrinho();
+    }
+
+    function limparCarrinho() {
+        carrinho = [];
+        atualizarCarrinho();
+    }
+
+    atualizarCarrinho();
+</script>
