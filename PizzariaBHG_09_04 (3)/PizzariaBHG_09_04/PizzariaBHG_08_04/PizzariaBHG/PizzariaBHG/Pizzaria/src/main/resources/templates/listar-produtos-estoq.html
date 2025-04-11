@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Produtos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+            max-width: 1200px;
+            margin: 40px auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #b30e0e;
+            font-weight: 700;
+            margin-bottom: 30px;
+        }
+
+        .table thead {
+            background-color: #198c05;
+            color: white;
+            text-align: center;
+        }
+
+        .table th, .table td {
+            vertical-align: middle;
+            text-align: center;
+            padding: 12px;
+            font-size: 14px;
+        }
+
+        .status-ativo {
+            background-color: #28a745;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 5px;
+            font-size: 13px;
+        }
+
+        .status-inativo {
+            background-color: #dc3545;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 5px;
+            font-size: 13px;
+        }
+
+        .btn-visualizar {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .btn-visualizar:hover {
+            opacity: 0.8;
+        }
+
+        /* Modal Styles */
+        .modal-header {
+            background-color: #198c05;
+            color: white;
+        }
+
+        .produto-imagem {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Lista de Produtos</h1>
+
+    <!-- Busca de Produtos -->
+    <form action="/listar-produtos-estoq" method="GET" class="mb-3">
+        <div class="input-group">
+            <input type="text" id="buscaProduto" name="buscaProduto" class="form-control" placeholder="Buscar por nome do produto..." th:value="${buscaProduto}">
+            <button type="submit" class="btn btn-primary">Buscar</button>
+        </div>
+    </form>
+
+    <!-- Botão Voltar -->
+    <form action="/listar-produtos-estoq" method="GET" class="mb-3">
+        <button type="submit" class="btn btn-secondary w-100">Voltar para todos os produtos</button>
+    </form>
+
+    <!-- Tabela de Produtos -->
+    <div class="table-responsive mt-3">
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Imagem</th>
+                <th>Nome</th>
+                <th>Quantidade</th>
+                <th>Preço (R$)</th>
+                <th>Status</th>
+                <th>Alterar</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="produto : ${produtos}">
+                <td th:text="${produto.id}"></td>
+
+                <!-- Coluna de Imagem -->
+                <td>
+                    <img th:src="@{'/uploads/' + ${produto.imagem}}" alt="Imagem" class="produto-imagem">
+                </td>
+
+                <td th:text="${produto.nome}"></td>
+                <td th:text="${produto.quantidade}"></td>
+                <td th:text="${produto.valor}"></td>
+                <td>
+                    <span th:classappend="${produto.ativo} ? 'status-ativo' : 'status-inativo'"
+                          th:text="${produto.ativo} ? 'Ativo' : 'Inativo'"></span>
+                </td>
+                <td>
+                    <a th:href="@{/editar-produto-estoq/{id}(id=${produto.id})}" class="btn btn-primary">Editar</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Botão Voltar -->
+    <div class="d-flex justify-content-start">
+        <a href="/estoqueDashboard" class="btn btn-secondary">Voltar</a>
+    </div>
+
+    <!-- Paginação -->
+    <div class="d-flex justify-content-between">
+        <ul class="pagination">
+            <li th:each="i : ${#numbers.sequence(0, totalPages - 1)}" class="page-item">
+                <a th:href="@{/listar-produtos-estoq(page=${i})}" th:text="${i + 1}" class="page-link"></a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+</body>
+</html>

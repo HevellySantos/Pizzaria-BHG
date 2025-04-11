@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Produtos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+            max-width: 1200px;
+            margin: 40px auto;
+            font-weight: 700;
+        }
+
+        h1 {
+            text-align: center;
+            color: #b30e0e;
+            margin-bottom: 30px;
+        }
+
+        .table thead {
+            background-color: #198c05;
+            color: white;
+            text-align: center;
+        }
+
+        .table th, .table td {
+            vertical-align: middle;
+            text-align: center;
+            padding: 12px;
+            font-size: 14px;
+        }
+
+        .status-ativo {
+            background-color: #28a745;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 5px;
+            font-size: 13px;
+        }
+
+        .status-inativo {
+            background-color: #dc3545;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 5px;
+            font-size: 13px;
+        }
+
+        .btn-ativar, .btn-inativar, .btn-visualizar {
+            font-size: 14px;
+            padding: 8px 16px;
+        }
+
+        .btn-ativar {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .btn-inativar {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        .btn-visualizar {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .btn-ativar:hover, .btn-inativar:hover, .btn-visualizar:hover {
+            opacity: 0.8;
+        }
+
+        .btn-cadastrar {
+            background-color: #b30e0e;
+            color: white;
+            border: none;
+            padding: 10px 5px 1px 5px;
+            font-weight: 200;
+            border-radius: 10px;
+            font-size: 14px;
+            text-decoration: none;
+            transition: all 0.2s ease-in-out;
+        }
+
+        .btn-cadastrar:hover {
+            background-color: #920b0b;
+        }
+
+        .btn-cadastrar:focus {
+            outline: none;
+            transform: scale(1.1);
+        }
+
+        .pagination .page-link {
+            color: #b30e0e;
+        }
+
+        .input-group {
+            max-width: 100%;
+            margin: 10px auto;
+        }
+
+        .btn-secondary {
+            font-size: 13px;
+            padding: 6px 12px;
+        }
+
+        .btn-voltar {
+            background-color: #6c757d;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 14px;
+            border-radius: 5px;
+        }
+
+        @media (max-width: 768px) {
+            .table th, .table td {
+                font-size: 12px;
+                padding: 8px;
+            }
+
+            .btn-cadastrar, .input-group button {
+                width: 100%;
+                margin-top: 10px;
+            }
+
+            .d-flex-between {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        .d-flex-between {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        img.produto-img {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 6px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Lista de Produtos</h1>
+
+    <div class="d-flex-between mb-3">
+        <form action="/listar-produtos" method="GET" class="mb-3 w-50">
+            <div class="input-group">
+                <input type="text" id="buscaProduto" name="buscaProduto" class="form-control" placeholder="Buscar por nome do produto..." th:value="${buscaProduto}">
+                <button type="submit" class="btn btn-primary">Buscar</button>
+            </div>
+        </form>
+        <a href="/cadastroProduto" class="btn btn-cadastrar">Cadastrar Novo Produto</a>
+    </div>
+
+    <form action="/listar-produtos" method="GET" class="mb-3">
+        <button type="submit" class="btn btn-secondary w-100">Voltar para todos os produtos</button>
+    </form>
+
+    <div class="table-responsive mt-3">
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Imagem</th>
+                <th>Nome</th>
+                <th>Quantidade</th>
+                <th>Preço (R$)</th>
+                <th>Status</th>
+                <th>Ação</th>
+                <th>Alterar</th>
+                <th>Visualizar</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="produto : ${produtos}">
+                <td th:text="${produto.id}"></td>
+                <td>
+                    <img th:src="@{'/uploads/' + ${produto.imagem}}" alt="Imagem do produto" class="produto-img">
+                </td>
+                <td th:text="${produto.nome}"></td>
+                <td th:text="${produto.quantidade}"></td>
+                <td th:text="${produto.valor}"></td>
+                <td>
+                    <span th:classappend="${produto.ativo} ? 'status-ativo' : 'status-inativo'"
+                          th:text="${produto.ativo} ? 'Ativo' : 'Inativo'"></span>
+                </td>
+                <td>
+                    <a th:href="@{/alterar-status/{id}(id=${produto.id})}"
+                       th:classappend="${produto.ativo} ? 'btn-inativar' : 'btn-ativar'"
+                       class="btn"
+                       onclick="return confirmarStatus(this, '${produto.ativo}')">
+                        <span th:text="${produto.ativo} ? 'Inativar' : 'Reativar'"></span>
+                    </a>
+                </td>
+                <td>
+                    <a th:href="@{/editar-produto/{id}(id=${produto.id})}"
+                       class="btn btn-primary"
+                       onclick="return confirmarAlteracao(this)">Editar</a>
+                </td>
+                <td>
+                    <button class="btn btn-visualizar" th:onclick="'abrirModal(' + ${produto.id} + ')'">Visualizar</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Modal para Visualizar Detalhes -->
+    <div class="modal fade" id="visualizarModal" tabindex="-1" aria-labelledby="visualizarModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="visualizarModalLabel">Detalhes do Produto</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p><strong>ID:</strong> <span id="modalId"></span></p>
+                    <p><strong>Nome:</strong> <span id="modalNome"></span></p>
+                    <p><strong>Avaliação:</strong> <span id="modalAvaliacao"></span></p>
+                    <p><strong>Quantidade:</strong> <span id="modalQuantidade"></span></p>
+                    <p><strong>Preço (R$):</strong> <span id="modalPreco"></span></p>
+                    <p><strong>Status:</strong> <span id="modalStatus"></span></p>
+                    <img id="modalImagem" class="img-fluid rounded" style="max-height: 200px;" alt="Imagem do Produto">
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-start">
+        <a href="/adminDashboard" class="btn btn-voltar">Voltar</a>
+    </div>
+
+    <div class="d-flex justify-content-between">
+        <ul class="pagination">
+            <li th:each="i : ${#numbers.sequence(0, totalPages - 1)}" class="page-item">
+                <a th:href="@{/listar-produtos(page=${i})}" th:text="${i + 1}" class="page-link"></a>
+            </li>
+        </ul>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function abrirModal(produtoId) {
+            const url = `/produto/${produtoId}`;
+            fetch(url)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Produto não encontrado');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    document.getElementById('modalId').textContent = data.id;
+                    document.getElementById('modalNome').textContent = data.nome;
+                    document.getElementById('modalAvaliacao').textContent = data.avaliacao;
+                    document.getElementById('modalQuantidade').textContent = data.quantidade;
+                    document.getElementById('modalPreco').textContent = data.valor.toFixed(2);
+                    document.getElementById('modalStatus').textContent = data.ativo ? 'Ativo' : 'Inativo';
+                    document.getElementById('modalImagem').src = '/uploads/' + data.imagem;
+
+
+                    const modal = new bootstrap.Modal(document.getElementById('visualizarModal'));
+                    modal.show();
+                })
+                .catch(error => {
+                    console.error('Erro ao carregar produto:', error);
+                    alert('Erro ao buscar os detalhes do produto.');
+                });
+        }
+
+        function confirmarAlteracao(linkElement) {
+            const url = linkElement.getAttribute('href');
+            Swal.fire({
+                title: 'Tem certeza?',
+                text: "Você deseja mesmo alterar o produto?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#28a745',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Sim, alterar!',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = url;
+                }
+            });
+            return false;
+        }
+
+        function confirmarStatus(linkElement, statusAtual) {
+            const url = linkElement.getAttribute('href');
+            const textoConfirmacao = statusAtual === 'true'
+                ? 'Você deseja inativar este produto?'
+                : 'Você deseja reativar este produto?';
+
+            Swal.fire({
+                title: 'Tem certeza?',
+                text: textoConfirmacao,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#28a745',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Sim, continuar!',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = url;
+                }
+            });
+
+            return false;
+        }
+    </script>
+</div>
+</body>
+</html>

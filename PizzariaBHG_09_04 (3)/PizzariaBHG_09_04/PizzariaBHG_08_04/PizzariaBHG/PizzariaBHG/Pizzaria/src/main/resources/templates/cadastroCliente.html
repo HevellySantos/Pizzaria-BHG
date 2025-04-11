@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Cadastro de Cliente</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+    <style>
+        body {
+            background: whitesmoke;
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        .form-container {
+            background: white;
+            padding: 40px 50px;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            max-width: 900px;
+            width: 100%;
+        }
+
+        .header-logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .header-logo img {
+            width: 300px;
+            height: auto;
+        }
+
+        .header-logo h2 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: #333;
+        }
+
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #b30e0e;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title::before {
+            content: '\f0c1'; /* ícone corrente */
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            color: #b30e0e;
+        }
+
+        .form-label {
+            font-weight: 500;
+            color: #444;
+        }
+
+        .form-control,
+        .form-select {
+            font-size: 0.95rem;
+            padding: 10px 12px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            transition: border-color 0.3s;
+        }
+
+        .form-control:focus,
+        .form-select:focus {
+            border-color: #198c05;
+            box-shadow: 0 0 0 0.15rem rgba(25, 140, 5, 0.2);
+        }
+
+        .btn-submit {
+            background: #198c05;
+            color: white;
+            font-weight: 600;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            width: 100%;
+            transition: background 0.3s;
+        }
+
+        .btn-submit:hover {
+            background: #157803;
+        }
+
+        .invalid-feedback {
+            display: none;
+            color: white;
+            font-size: 14px;
+            background-color: #dc3545;
+            padding: 8px 12px;
+            border-radius: 5px;
+            margin-top: 5px;
+        }
+
+        hr {
+            border: none;
+            height: 2px;
+            background-color: #ccc;
+            margin: 30px 0 20px;
+        }
+
+        .social-login {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .social-login a {
+            text-decoration: none;
+            color: #444;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: color 0.3s;
+        }
+
+        .social-login a:hover {
+            color: #444;
+        }
+    </style>
+</head>
+
+<body>
+<div class="form-container">
+    <!-- LOGO + TÍTULO -->
+    <div class="header-logo">
+        <img src="/images/logo.png" alt="Logo da Empresa" />
+        <h2>Cadastro de Cliente</h2>
+    </div>
+
+    <hr>
+    <h5 class="section-title">Informações de Contato</h5>
+    <br>
+
+    <form id="formCadastro" action="/cadastroCliente" method="POST" onsubmit="return validarFormulario(event)">
+    <!-- EMAIL + NOME -->
+        <div class="row">
+            <div class="col-md-6">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+                <div th:if="${erroEmail}" class="alert alert-danger" role="alert">
+                    <span th:text="${erroEmail}"></span>
+                </div>
+
+            </div>
+            <div class="col-md-6">
+                <label for="nome" class="form-label">Nome</label>
+                <input type="text" class="form-control" id="nome" name="nome" required>
+                <div id="nomeFeedback" class="invalid-feedback">Informe nome completo com pelo menos 3 letras em cada palavra.</div>
+            </div>
+        </div>
+
+        <br>
+
+        <!-- SENHA + CONFIRMAR SENHA -->
+        <div class="row">
+            <div class="col-md-6">
+                <label for="senha" class="form-label">Senha</label>
+                <input type="password" class="form-control" id="senha" name="senha" required>
+            </div>
+            <div class="col-md-6">
+                <label for="confirmarSenha" class="form-label">Confirmar Senha</label>
+                <input type="password" class="form-control" id="confirmarSenha" name="confirmarSenha" required>
+                <div id="senhaFeedback" class="invalid-feedback">As senhas não coincidem.</div>
+            </div>
+        </div>
+
+        <br>
+
+
+        <!-- CPF + NASC + GÊNERO -->
+        <div class="row">
+            <div class="col-md-4">
+                <div th:if="${erroCpf}" class="alert alert-danger mt-2" role="alert">
+                    <span th:text="${erroCpf}"></span>
+                </div>
+                <label for="cpf" class="form-label">CPF</label>
+                <input type="text" class="form-control" id="cpf" name="cpf" required oninput="formatarCPF(this)">
+                <div id="cpfFeedback" class="invalid-feedback">CPF inválido!</div>
+            </div>
+            <div class="col-md-4">
+                <label for="dataNascimento" class="form-label">Data de Nascimento</label>
+                <input type="date" class="form-control" id="dataNascimento" name="dataNascimento" required>
+            </div>
+            <div class="col-md-4">
+                <label for="genero" class="form-label">Gênero</label>
+                <select class="form-select" id="genero" name="genero" required>
+                    <option value="">Selecione</option>
+                    <option>Masculino</option>
+                    <option>Feminino</option>
+                </select>
+            </div>
+        </div>
+
+        <br>
+        <hr>
+        <h5 class="section-title">Endereço</h5>
+        <br>
+
+        <!-- ENDEREÇO -->
+        <div class="row">
+            <div class="col-md-4">
+                <label for="cep" class="form-label">CEP</label>
+                <input type="text" class="form-control" id="cep" name="cep" required>
+            </div>
+            <div class="col-md-6">
+                <label for="logradouro" class="form-label">Logradouro</label>
+                <input type="text" class="form-control" id="logradouro" name="logradouro" required>
+            </div>
+            <div class="col-md-2">
+                <label for="numero" class="form-label">Número</label>
+                <input type="number" class="form-control" id="numero" name="numero" required>
+            </div>
+        </div>
+
+        <br>
+
+        <div class="row">
+            <div class="col-md-6">
+                <label for="complemento" class="form-label">Complemento</label>
+                <input type="text" class="form-control" id="complemento" name="complemento">
+            </div>
+            <div class="col-md-6">
+                <label for="bairro" class="form-label">Bairro</label>
+                <input type="text" class="form-control" id="bairro" name="bairro" required>
+            </div>
+        </div>
+
+        <br>
+
+        <div class="row">
+            <div class="col-md-8">
+                <label for="cidade" class="form-label">Cidade</label>
+                <input type="text" class="form-control" id="cidade" name="cidade" required>
+            </div>
+            <div class="col-md-4">
+                <label for="uf" class="form-label">UF</label>
+                <input type="text" class="form-control" id="uf" name="uf" required>
+            </div>
+        </div>
+
+        <br>
+        <div id="erroIdade" class="alert alert-danger d-none" role="alert">
+            Data de Nascimento Inválida!
+        </div>
+
+        <hr>
+        <h5 class="section-title">Endereço de Entrega</h5>
+
+        <!-- Checkbox para copiar endereço -->
+        <div class="form-check mb-3">
+            <input class="form-check-input" type="checkbox" id="copiarEndereco" onclick="copiarEnderecoEntrega()">
+            <label class="form-check-label" for="copiarEndereco">
+                Usar endereço de faturamento como endereço de entrega
+            </label>
+        </div>
+
+        <!-- Endereços de entrega (dinâmicos) -->
+        <div id="enderecosEntrega">
+            <div class="endereco-entrega mb-4">
+                <div class="row">
+                    <div class="col-md-4">
+                        <label class="form-label">CEP</label>
+                        <input type="text" class="form-control" name="cepEntrega[]" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Logradouro</label>
+                        <input type="text" class="form-control" name="logradouroEntrega[]" required>
+                    </div>
+                    <div class="col-md-2">
+                        <label class="form-label">Número</label>
+                        <input type="text" class="form-control" name="numeroEntrega[]" required>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label class="form-label">Bairro</label>
+                        <input type="text" class="form-control" name="bairroEntrega[]" required>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label">Cidade</label>
+                        <input type="text" class="form-control" name="cidadeEntrega[]" required>
+                    </div>
+                    <div class="col-md-2">
+                        <label class="form-label">UF</label>
+                        <input type="text" class="form-control" name="ufEntrega[]" required>
+                    </div>
+                </div>
+                <hr>
+            </div>
+        </div>
+
+        <!-- Botão para adicionar outro endereço -->
+        <div class="mb-3">
+            <button type="button" class="btn btn-outline-secondary" onclick="adicionarEnderecoEntrega()">
+                + Adicionar outro endereço de entrega
+            </button>
+        </div>
+
+
+        <div class="mt-4">
+            <button type="submit" class="btn-submit">Cadastrar</button>
+        </div>
+
+        <div class="social-login mt-4">
+            <a href="/loginCliente"><i class="fas fa-user"></i> Já tem uma conta? Faça login</a>
+        </div>
+
+    </form>
+</div>
+
+<script>
+    function formatarCPF(campo) {
+        let cpf = campo.value.replace(/\D/g, "");
+        cpf = cpf.replace(/^(\d{3})(\d)/, "$1.$2");
+        cpf = cpf.replace(/^(\d{3})\.(\d{3})(\d)/, "$1.$2.$3");
+        cpf = cpf.replace(/\.(\d{3})(\d)/, ".$1-$2");
+        campo.value = cpf;
+    }
+
+    function validarCPF() {
+        let cpf = document.getElementById('cpf').value.replace(/\D/g, "");
+        if (cpf.length !== 11) {
+            exibirErroCPF(true);
+            return false;
+        }
+
+        let soma = 0, resto;
+        for (let i = 0; i < 9; i++) soma += parseInt(cpf.charAt(i)) * (10 - i);
+        resto = 11 - (soma % 11);
+        if (resto >= 10) resto = 0;
+        if (resto !== parseInt(cpf.charAt(9))) {
+            exibirErroCPF(true);
+            return false;
+        }
+
+        soma = 0;
+        for (let i = 0; i < 10; i++) soma += parseInt(cpf.charAt(i)) * (11 - i);
+        resto = 11 - (soma % 11);
+        if (resto >= 10) resto = 0;
+        if (resto !== parseInt(cpf.charAt(10))) {
+            exibirErroCPF(true);
+            return false;
+        }
+
+        exibirErroCPF(false);
+        return true;
+    }
+
+    function exibirErroCPF(erro) {
+        let campo = document.getElementById('cpf');
+        let feedback = document.getElementById('cpfFeedback');
+        campo.classList.toggle('is-invalid', erro);
+        feedback.style.display = erro ? 'block' : 'none';
+    }
+
+    function validarFormulario() {
+        const senha = document.getElementById("senha").value;
+        const confirmarSenha = document.getElementById("confirmarSenha").value;
+        const campoNome = document.getElementById("nome");
+        const feedbackNome = document.getElementById("nomeFeedback");
+
+        let nomeValido = validarNome();
+        campoNome.classList.toggle('is-invalid', !nomeValido);
+        feedbackNome.style.display = nomeValido ? 'none' : 'block';
+
+        if (senha !== confirmarSenha) {
+            document.getElementById("senhaFeedback").style.display = 'block';
+            return false;
+        }
+
+        return validarCPF() && nomeValido && validarIdadeMinima();
+    }
+
+
+    function validarNome() {
+        const nome = document.getElementById('nome').value.trim();
+        const palavras = nome.split(/\s+/);
+
+        // Verifica se há pelo menos duas palavras
+        if (palavras.length < 2) return false;
+
+        // Verifica se cada palavra tem pelo menos 3 letras
+        for (const palavra of palavras) {
+            if (palavra.length < 3) return false;
+        }
+
+        return true;
+    }
+
+    document.getElementById("cep").addEventListener("blur", function () {
+        const cep = this.value.replace(/\D/g, '');
+
+        if (cep.length !== 8) {
+            alert("CEP inválido. Deve conter 8 dígitos.");
+            return;
+        }
+
+        fetch(`https://viacep.com.br/ws/${cep}/json/`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Erro ao buscar CEP");
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.erro) {
+                    alert("CEP não encontrado.");
+                    return;
+                }
+
+                // Preenche os campos automaticamente
+                document.getElementById("logradouro").value = data.logradouro || '';
+                document.getElementById("bairro").value = data.bairro || '';
+                document.getElementById("cidade").value = data.localidade || '';
+                document.getElementById("uf").value = data.uf || '';
+            })
+            .catch(() => {
+                alert("Erro ao consultar o CEP.");
+            });
+    });
+
+    function validarIdadeMinima() {
+        const nascimento = document.getElementById("dataNascimento").value;
+        const dataNascimento = new Date(nascimento);
+        const hoje = new Date();
+
+        let idade = hoje.getFullYear() - dataNascimento.getFullYear();
+        const mes = hoje.getMonth() - dataNascimento.getMonth();
+
+        if (mes < 0 || (mes === 0 && hoje.getDate() < dataNascimento.getDate())) {
+            idade--;
+        }
+
+        const divErro = document.getElementById("erroIdade");
+
+        if (idade < 18) {
+            divErro.classList.remove("d-none");
+            return false;
+        }
+
+        divErro.classList.add("d-none");
+        return true;
+    }
+        function copiarEnderecoEntrega() {
+        if (document.getElementById("copiarEndereco").checked) {
+        const campos = ['cep', 'logradouro', 'numero', 'bairro', 'cidade', 'uf'];
+        campos.forEach(campo => {
+        const valor = document.getElementById(campo).value;
+        const inputEntrega = document.getElementsByName(`${campo}Entrega[]`)[0];
+        if (inputEntrega) inputEntrega.value = valor;
+    });
+    }
+    }
+
+        function adicionarEnderecoEntrega() {
+        const container = document.getElementById("enderecosEntrega");
+        const novo = container.children[0].cloneNode(true);
+        novo.querySelectorAll('input').forEach(input => input.value = '');
+        container.appendChild(novo);
+    }
+
+</script>
+</body>
+</html>

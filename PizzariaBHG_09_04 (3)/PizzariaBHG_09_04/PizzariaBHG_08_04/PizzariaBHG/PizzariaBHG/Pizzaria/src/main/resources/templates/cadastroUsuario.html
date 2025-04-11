@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Usuário</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .form-container {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 450px; /* Largura máxima para telas maiores */
+            box-sizing: border-box;
+        }
+
+        h2 {
+            text-align: center;
+            color: #b30e0e;
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+
+        .form-label {
+            font-weight: 500;
+        }
+
+        .btn-submit {
+            background: #198c05;
+            color: white;
+            font-weight: 600;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            transition: 0.3s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+            cursor: pointer;
+            font-size: 16px;
+            text-transform: uppercase;
+        }
+
+        .btn-submit:hover {
+            background: linear-gradient(145deg, #146a04, #198c05);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2), 0 2px 4px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-submit:active {
+            background: linear-gradient(145deg, #146a04, #198c05);
+            transform: translateY(2px);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.08);
+        }
+
+        .text-center a {
+            color: #b30e0e;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .text-center a:hover {
+            text-decoration: underline;
+        }
+
+        .invalid-feedback {
+            display: none;
+            color: white;
+            font-size: 14px;
+            background-color: #dc3545;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        /* Animação para a exibição do erro */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsividade para telas pequenas */
+        @media (max-width: 768px) {
+            .form-container {
+                padding: 15px;
+                max-width: 90%; /* 90% da largura da tela para dispositivos médios */
+            }
+
+            h2 {
+                font-size: 1.25rem; /* Ajuste no tamanho da fonte para telas menores */
+            }
+
+            .btn-submit {
+                font-size: 14px; /* Ajuste do tamanho da fonte do botão */
+                padding: 10px; /* Menos padding no botão */
+            }
+        }
+
+        /* Ajustes para telas muito pequenas */
+        @media (max-width: 576px) {
+            .form-container {
+                padding: 10px; /* Menos padding */
+            }
+
+            h2 {
+                font-size: 1.125rem; /* Tamanho de fonte reduzido */
+            }
+
+            .btn-submit {
+                font-size: 14px; /* Font-size reduzido */
+                padding: 8px; /* Menos padding no botão */
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <h2>Cadastro de Usuário</h2>
+    <form id="formCadastro" onsubmit="return validarFormulario()">
+        <div class="mb-3">
+            <label for="nome" class="form-label">Nome</label>
+            <input type="text" class="form-control" id="nome" name="nome" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="cpf" class="form-label">CPF</label>
+            <input type="text" class="form-control" id="cpf" name="cpf" placeholder="000.000.000-00" required oninput="formatarCPF(this)">
+            <div id="cpfFeedback" class="invalid-feedback">CPF inválido!</div>
+        </div>
+
+        <div class="mb-3">
+            <label for="email" class="form-label">E-mail</label>
+            <input type="email" class="form-control" id="email" name="email" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="senha" class="form-label">Senha</label>
+            <input type="password" id="senha" name="senha" class="form-control" required>
+            <div id="senhaFeedback" class="invalid-feedback">As senhas não coincidem. Por favor, verifique e tente novamente.</div>
+        </div>
+
+        <div class="mb-3">
+            <label for="confirmarSenha" class="form-label">Confirmar Senha</label>
+            <input type="password" id="confirmarSenha" name="confirmarSenha" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="role" class="form-label">Tipo de Usuário</label>
+            <select class="form-select" id="role" name="role" required>
+                <option value="ESTOQUISTA">Estoquista</option>
+                <option value="ADMIN">Administrador</option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn-submit w-100">Cadastrar</button>
+    </form>
+    <p class="text-center mt-3">
+        Já tem uma conta? <a href="/login">Faça login</a>
+    </p>
+</div>
+
+<script>
+    // Função para formatar o CPF
+    function formatarCPF(campo) {
+        let cpf = campo.value.replace(/\D/g, ""); // Remove caracteres não numéricos
+        cpf = cpf.replace(/^(\d{3})(\d)/, "$1.$2");
+        cpf = cpf.replace(/^(\d{3})\.(\d{3})(\d)/, "$1.$2.$3");
+        cpf = cpf.replace(/\.(\d{3})(\d)/, ".$1-$2");
+        campo.value = cpf;
+    }
+
+    // Função para validar o CPF
+    function validarCPF() {
+        let cpf = document.getElementById('cpf').value.replace(/\D/g, ""); // Remove caracteres não numéricos
+
+        if (cpf.length !== 11) {
+            exibirErroCPF(true);
+            return false;
+        }
+
+        let soma = 0, resto;
+
+        // Calcula o primeiro dígito verificador
+        for (let i = 0; i < 9; i++) soma += parseInt(cpf.charAt(i)) * (10 - i);
+        resto = 11 - (soma % 11);
+        if (resto === 10 || resto === 11) resto = 0;
+        if (resto !== parseInt(cpf.charAt(9))) {
+            exibirErroCPF(true);
+            return false;
+        }
+
+        soma = 0;
+        // Calcula o segundo dígito verificador
+        for (let i = 0; i < 10; i++) soma += parseInt(cpf.charAt(i)) * (11 - i);
+        resto = 11 - (soma % 11);
+        if (resto === 10 || resto === 11) resto = 0;
+        if (resto !== parseInt(cpf.charAt(10))) {
+            exibirErroCPF(true);
+            return false;
+        }
+
+        exibirErroCPF(false);
+        return true;
+    }
+
+    // Exibe ou oculta o erro de CPF
+    function exibirErroCPF(erro) {
+        let campo = document.getElementById('cpf');
+        let feedback = document.getElementById('cpfFeedback');
+
+        if (erro) {
+            campo.classList.add('is-invalid');
+            feedback.style.display = 'block';
+        } else {
+            campo.classList.remove('is-invalid');
+            feedback.style.display = 'none';
+        }
+    }
+
+    // Função de validação do formulário
+    function validarFormulario() {
+        const senha = document.getElementById("senha").value;
+        const confirmarSenha = document.getElementById("confirmarSenha").value;
+
+        const senhaFeedback = document.getElementById("senhaFeedback");
+
+        if (senha !== confirmarSenha) {
+            senhaFeedback.style.display = 'block';
+            return false;  // Impede o envio do formulário
+        } else {
+            senhaFeedback.style.display = 'none';
+        }
+
+        // Validação do CPF
+        if (!validarCPF()) {
+            alert("CPF inválido. Verifique o número e tente novamente.");
+            return false;
+        }
+
+        return true; // Se tudo estiver correto, envia o formulário
+    }
+
+    document.getElementById("formCadastro").addEventListener("submit", function(e) {
+        e.preventDefault(); // Impede envio tradicional do formulário
+
+        if (!validarFormulario()) return;
+
+        const formData = new FormData(this);
+        const dados = Object.fromEntries(formData.entries());
+
+        fetch("/cadastroUsuario", { // <-- Altere para sua rota real do backend
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(dados)
+        })
+            .then(response => {
+                if (response.ok) {
+                    alert("Usuário cadastrado com sucesso!");
+                    // Redireciona ou limpa o formulário
+                    // window.location.href = "/loginCliente";
+                } else {
+                    alert("Erro ao cadastrar usuário.");
+                }
+            })
+            .catch(error => {
+                console.error("Erro na requisição:", error);
+                alert("Erro inesperado ao tentar cadastrar.");
+            });
+    });
+</script>
+
+</body>
+</html>

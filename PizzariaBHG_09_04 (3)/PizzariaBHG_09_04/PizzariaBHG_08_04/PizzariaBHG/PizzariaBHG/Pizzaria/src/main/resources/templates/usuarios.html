@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel de Administração</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome para ícones -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+            max-width: 1200px;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #b30e0e;
+            font-weight: 700;
+            margin-bottom: 30px;
+        }
+
+        .table thead {
+            background-color: #198c05;
+            color: white;
+            text-align: center;
+        }
+
+        .table th,
+        .table td {
+            vertical-align: middle;
+            padding: 12px;
+        }
+
+        .btn-success {
+            border-color: #198c05;
+        }
+
+        .btn-success:hover {
+            border-color: #146a04;
+        }
+
+        .btn-danger {
+            background-color: #dc3545;
+            border-color: #dc3545;
+        }
+
+        .btn-danger:hover {
+            background-color: #c82333;
+            border-color: #c82333;
+        }
+
+        .badge {
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .form-control:focus,
+        .btn:focus {
+            box-shadow: 0 0 5px rgba(26, 144, 24, 0.7);
+        }
+
+        .search-container {
+            display: flex;
+            gap: 10px;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .search-container form {
+            flex-grow: 1;
+        }
+
+        .search-container .btn-secondary {
+            font-size: 0.9rem;
+            padding: 5px 15px;
+        }
+
+        /* Responsividade para dispositivos móveis */
+        @media (max-width: 768px) {
+            .table th,
+            .table td {
+                font-size: 14px;
+                padding: 8px;
+            }
+
+            .search-container {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .search-container form {
+                margin-bottom: 10px;
+                width: 100%;
+            }
+
+            .search-container .btn-secondary {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .table th,
+            .table td {
+                font-size: 12px;
+                padding: 6px;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>Painel de Administração</h1>
+
+    <!-- Área de busca e botão de voltar para todos os usuários -->
+    <div class="search-container">
+        <form action="/usuarios" method="GET">
+            <div class="input-group">
+                <input type="text" id="buscaUsuario" name="buscaUsuario" class="form-control"
+                       placeholder="Buscar por nome do usuário..." th:value="${buscaUsuario}">
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-search"></i> Buscar
+                </button>
+            </div>
+        </form>
+        <button class="btn btn-secondary btn-sm" onclick="window.location.href='/usuarios'">
+            <i class="fas fa-users"></i> Todos os Usuários
+        </button>
+    </div>
+
+    <!-- Botão de adicionar usuário -->
+    <div class="d-flex justify-content-end mb-3">
+        <button class="btn btn-outline-secondary btn-sm" onclick="window.location.href='/cadastroUsuario'">
+            <i class="fas fa-plus-circle"></i> Adicionar Usuário
+        </button>
+    </div>
+
+    <!-- Tabela de usuários -->
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Grupo</th>
+                <th>Status</th>
+                <th>Alterar</th>
+                <th>Habilitar/Desabilitar</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="usuario : ${usuarios}">
+                <td th:text="${usuario.nome}"></td>
+                <td th:text="${usuario.email}"></td>
+                <td th:text="${usuario.role}"></td>
+                <td>
+                    <span th:classappend="${usuario.ativo} ? 'badge bg-success' : 'badge bg-danger'"
+                          th:text="${usuario.ativo} ? 'Ativo' : 'Inativo'"></span>
+                </td>
+                <td>
+                    <a th:href="@{/usuarios/editar/{id}(id=${usuario.id})}" class="btn btn-primary btn-sm">Editar</a>
+                </td>
+                <td>
+                    <form th:action="@{/usuarios/{id}/toggle-status(id=${usuario.id})}" method="post"
+                          onsubmit="return confirmarAlteracao()">
+                        <button type="submit" th:text="${usuario.ativo} ? 'Desativar' : 'Ativar'"
+                                th:classappend="${usuario.ativo} ? 'btn btn-danger' : 'btn btn-success'"
+                                class="btn btn-sm">
+                        </button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Botão de voltar ao início -->
+    <div class="d-flex justify-content-end">
+        <button class="btn btn-secondary btn-sm" onclick="window.location.href='/adminDashboard'">
+            <i class="fas fa-arrow-left"></i> Voltar ao Início
+        </button>
+    </div>
+</div>
+
+<script>
+    function confirmarAlteracao() {
+        return confirm("Tem certeza que deseja alterar o status deste usuário?");
+    }
+</script>
+
+</body>
+
+</html>

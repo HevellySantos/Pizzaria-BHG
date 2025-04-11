@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes - Pizza Portuguesa</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f8f8;
+        }
+        .header {
+            background-color: #C4C4C4;
+            padding: 30px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 5px solid #d32f2f;
+        }
+        .header img {
+            height: 80px;
+        }
+        .header nav a {
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+            margin-left: 20px;
+        }
+        .header nav a:hover {
+            color: #d32f2f;
+        }
+        .product-detail {
+            max-width: 900px;
+            margin: 50px auto;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            padding: 20px;
+        }
+        .product-detail img {
+            width: 100%;
+            border-radius: 8px;
+        }
+        .product-detail h3 {
+            color: #333;
+            margin-top: 20px;
+            font-size: 2em;
+        }
+        .product-detail .description {
+            margin: 15px 0;
+            font-size: 1.1em;
+            color: #555;
+        }
+        .product-detail .price {
+            font-size: 1.5em;
+            color: #198c05;
+            font-weight: bold;
+        }
+        .product-detail .btn {
+            background-color: #b30e0e;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 5px;
+            border: none;
+            margin-top: 20px;
+            font-size: 1.2em;
+            cursor: pointer;
+        }
+        .product-detail .btn:hover {
+            background-color: #198c05;
+        }
+        .stars {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .stars i {
+            font-size: 24px;
+            color: #f1c40f;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        .stars i:hover {
+            color: #f39c12;
+        }
+        .stars i.active {
+            color: #f39c12;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<header class="header">
+    <img src="logo.png" alt="Logo" class="logo">
+    <nav class="nav">
+        <a href="#cardapio">Cardápio</a>
+        <a href="#promocoes">Promoções</a>
+    </nav>
+    <div class="login-cart">
+        <a href="#" class="login"><i class="fas fa-user"></i> Fazer login | Cadastrar-se</a>
+        <a href="#" onclick="abrirCarrinho()" class="cart">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="cart-badge" id="quantidade-carrinho">0</span>
+        </a>
+    </div>
+</header>
+
+<main>
+    <div class="product-detail">
+        <img src="https://via.placeholder.com/500" alt="Pizza Portuguesa">
+        <h3>Pizza Portuguesa</h3>
+        <p class="description">
+            Presunto, ovo, cebola e azeitona. Com uma especiaria refinada que vai conquistar seu paladar. Uma combinação deliciosa de ingredientes frescos e saborosos, tudo sobre uma massa crocante e bem assada.
+        </p>
+        <p class="price">R$ 45,00</p>
+        <!-- Avaliação -->
+        <div class="stars">
+            <i class="fas fa-star" onclick="setRating(1)"></i>
+            <i class="fas fa-star" onclick="setRating(2)"></i>
+            <i class="fas fa-star" onclick="setRating(3)"></i>
+            <i class="fas fa-star" onclick="setRating(4)"></i>
+            <i class="fas fa-star" onclick="setRating(5)"></i>
+        </div>
+        <button class="btn">Adicionar ao Carrinho</button>
+
+    </div>
+</main>
+
+<footer>
+    <p>Contato: (11) 1234-5678</p>
+    <p>Email: pizzaria@delicia.com.br</p>
+</footer>
+
+<script>
+    function setRating(rating) {
+        const stars = document.querySelectorAll('.stars i');
+        stars.forEach((star, index) => {
+            if (index < rating) {
+                star.classList.add('active');
+            } else {
+                star.classList.remove('active');
+            }
+        });
+    }
+
+    function abrirCarrinho() {
+        alert("Seu carrinho está vazio!");
+    }
+</script>
+
+</body>
+</html>
