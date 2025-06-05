@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Principal - Backoffice</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            background-color: #fff9f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container-principal {
+            width: 550px;
+            background-color: #d6cdcd;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 3rem;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .header {
+            background-color: #cf2a27;
+            width: 100%;
+            margin-bottom: 30px;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .header h1 {
+            background-color: #009e0f;
+            padding: 10px;
+            border-radius: 10px;
+            color: white;
+            font-size: 28px;
+            font-weight: bold;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .btn-custom {
+            width: 100%;
+            padding: 12px 24px;
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+            border-radius: 10px;
+            text-decoration: none;
+            text-align: center;
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .btn-custom:hover {
+            transform: scale(1.05);
+        }
+
+        .btn-produtos {
+            background-color: #009e0f;
+        }
+
+        .btn-usuarios {
+            background-color: #007bff;
+        }
+
+        .btn-pedidos {
+            background-color: #ffc107;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-principal">
+        <div class="header">
+            <h1>Painel Principal</h1>
+        </div>
+
+        <div class="button-container">
+            <a href="lista-produtos.html" class="btn-custom btn-produtos">
+                <i class="fas fa-box"></i> Lista Produtos
+            </a>
+            <a href="lista-usuarios.html" class="btn-custom btn-usuarios">
+                <i class="fas fa-users"></i> Lista Usuários
+            </a>
+            <a href="lista-pedidos.html" class="btn-custom btn-pedidos">
+                <i class="fas fa-receipt"></i> Lista Pedidos
+            </a>
+        </div>
+    </div>
+</body>
+</html>

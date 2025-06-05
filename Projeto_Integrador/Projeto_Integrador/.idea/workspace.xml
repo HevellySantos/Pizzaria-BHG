@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="c4475723-a176-4b35-8b8c-bca4c804a0de" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Projeto_Integrador/src/main/java/br/PI/Pizzaria/controller/carrinho/CarrinhoController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Projeto_Integrador/src/main/java/br/PI/Pizzaria/controller/pedidos/PedidoController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Projeto_Integrador/src/main/java/br/PI/Pizzaria/controller/pedidos/StatusPedido.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Projeto_Integrador/src/main/java/br/PI/Pizzaria/model/pedidos/Pedidos.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Projeto_Integrador/src/main/java/br/PI/Pizzaria/repository/pedido/ItemPedidoRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Projeto_Integrador/src/main/java/br/PI/Pizzaria/repository/pedido/PedidoRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Projeto_Integrador/src/main/java/br/PI/Pizzaria/repository/produto/ProdutoRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Projeto_Integrador/src/main/java/br/PI/Pizzaria/DataConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/Projeto_Integrador/src/main/java/br/PI/Pizzaria/DataConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Projeto_Integrador/src/main/java/br/PI/Pizzaria/controllerCardapio/ControllerCardapio.java" beforeDir="false" afterPath="$PROJECT_DIR$/Projeto_Integrador/src/main/java/br/PI/Pizzaria/controller/cardapio/ControllerCardapio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Projeto_Integrador/src/main/java/br/PI/Pizzaria/controllerCarrinho/CarrinhoController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Projeto_Integrador/src/main/java/br/PI/Pizzaria/controllerClientes/EditarClienteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Projeto_Integrador/src/main/java/br/PI/Pizzaria/controller/clientes/EditarClienteController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Projeto_Integrador/src/main/java/br/PI/Pizzaria/controllerClientes/LoginCliController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Projeto_Integrador/src/main/java/br/PI/Pizzaria/controller/clientes/LoginCliController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Projeto_Integrador/src/main/java/br/PI/Pizzaria/controllerEndereco/EnderecoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Projeto_Integrador/src/main/java/br/PI/Pizzaria/controller/endereco/EnderecoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Projeto_Integrador/src/main/java/br/PI/Pizzaria/controllerPagamento/MetodoPagamentoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Projeto_Integrador/src/main/java/br/PI/Pizzaria/controller/pagamento/MetodoPagamentoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Projeto_Integrador/src/main/java/br/PI/Pizzaria/controllerPagamento/PagamentoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Projeto_Integrador/src/main/java/br/PI/Pizzaria/controller/pagamento/PagamentoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Projeto_Integrador/src/main/java/br/PI/Pizzaria/controllerPedidos/ItemPedidoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Projeto_Integrador/src/main/java/br/PI/Pizzaria/controller/pedidos/ItemPedidoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Projeto_Integrador/src/main/java/br/PI/Pizzaria/controllerPedidos/PedidoController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Projeto_Integrador/src/main/java/br/PI/Pizzaria/controllerPedidos/StatusPedido.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Projeto_Integrador/src/main/java/br/PI/Pizzaria/controllerProdutos/EditarProdutoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Projeto_Integrador/src/main/java/br/PI/Pizzaria/controller/produtos/EditarProdutoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Projeto_Integrador/src/main/java/br/PI/Pizzaria/controllerProdutos/EditarProdutoControllerEstoq.java" beforeDir="false" afterPath="$PROJECT_DIR$/Projeto_Integrador/src/main/java/br/PI/Pizzaria/controller/produtos/EditarProdutoControllerEstoq.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Projeto_Integrador/src/main/java/br/PI/Pizzaria/controllerProdutos/ProdutoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Projeto_Integrador/src/main/java/br/PI/Pizzaria/controller/produtos/ProdutoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Projeto_Integrador/src/main/java/br/PI/Pizzaria/controllerProdutos/ProdutoControllerEstoq.java" beforeDir="false" afterPath="$PROJECT_DIR$/Projeto_Integrador/src/main/java/br/PI/Pizzaria/controller/produtos/ProdutoControllerEstoq.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Projeto_Integrador/src/main/java/br/PI/Pizzaria/controllerUsuarios/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Projeto_Integrador/src/main/java/br/PI/Pizzaria/controller/usuarios/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Projeto_Integrador/src/main/java/br/PI/Pizzaria/controllerUsuarios/UsuarioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Projeto_Integrador/src/main/java/br/PI/Pizzaria/controller/usuarios/UsuarioController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Projeto_Integrador/src/main/java/br/PI/Pizzaria/controllerUsuarios/UsuarioEditarController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Projeto_Integrador/src/main/java/br/PI/Pizzaria/controller/usuarios/UsuarioEditarController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Projeto_Integrador/src/main/java/br/PI/Pizzaria/encriptar/EncryptSenhasAntigas.java" beforeDir="false" afterPath="$PROJECT_DIR$/Projeto_Integrador/src/main/java/br/PI/Pizzaria/encriptar/EncryptSenhasAntigas.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Projeto_Integrador/src/main/java/br/PI/Pizzaria/encriptar/EncryptSenhasClientes.java" beforeDir="false" afterPath="$PROJECT_DIR$/Projeto_Integrador/src/main/java/br/PI/Pizzaria/encriptar/EncryptSenhasClientes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Projeto_Integrador/src/main/java/br/PI/Pizzaria/encriptar/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/Projeto_Integrador/src/main/java/br/PI/Pizzaria/encriptar/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Projeto_Integrador/src/main/java/br/PI/Pizzaria/modelCarrinho/ItemCarrinho.java" beforeDir="false" afterPath="$PROJECT_DIR$/Projeto_Integrador/src/main/java/br/PI/Pizzaria/model/carrinho/ItemCarrinho.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Projeto_Integrador/src/main/java/br/PI/Pizzaria/modelCarrinho/ResumoPedido.java" beforeDir="false" afterPath="$PROJECT_DIR$/Projeto_Integrador/src/main/java/br/PI/Pizzaria/model/carrinho/ResumoPedido.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Projeto_Integrador/src/main/java/br/PI/Pizzaria/modelCliente/Cliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/Projeto_Integrador/src/main/java/br/PI/Pizzaria/model/cliente/Cliente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Projeto_Integrador/src/main/java/br/PI/Pizzaria/modelCliente/Endereco.java" beforeDir="false" afterPath="$PROJECT_DIR$/Projeto_Integrador/src/main/java/br/PI/Pizzaria/model/cliente/Endereco.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Projeto_Integrador/src/main/java/br/PI/Pizzaria/modelPedidos/ItemPedidos.java" beforeDir="false" afterPath="$PROJECT_DIR$/Projeto_Integrador/src/main/java/br/PI/Pizzaria/model/pedidos/ItemPedidos.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Projeto_Integrador/src/main/java/br/PI/Pizzaria/modelPedidos/Pedidos.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Projeto_Integrador/src/main/java/br/PI/Pizzaria/modelPedidos/StatusPedido.java" beforeDir="false" afterPath="$PROJECT_DIR$/Projeto_Integrador/src/main/java/br/PI/Pizzaria/model/pedidos/StatusPedido.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Projeto_Integrador/src/main/java/br/PI/Pizzaria/modelProdutos/ImagemProduto.java" beforeDir="false" afterPath="$PROJECT_DIR$/Projeto_Integrador/src/main/java/br/PI/Pizzaria/model/produtos/ImagemProduto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Projeto_Integrador/src/main/java/br/PI/Pizzaria/modelProdutos/Produto.java" beforeDir="false" afterPath="$PROJECT_DIR$/Projeto_Integrador/src/main/java/br/PI/Pizzaria/model/produtos/Produto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Projeto_Integrador/src/main/java/br/PI/Pizzaria/modelUsuarios/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/Projeto_Integrador/src/main/java/br/PI/Pizzaria/model/usuarios/Role.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Projeto_Integrador/src/main/java/br/PI/Pizzaria/modelUsuarios/UpdateUsuarioDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/Projeto_Integrador/src/main/java/br/PI/Pizzaria/model/usuarios/UpdateUsuarioDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Projeto_Integrador/src/main/java/br/PI/Pizzaria/modelUsuarios/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/Projeto_Integrador/src/main/java/br/PI/Pizzaria/model/usuarios/Usuario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Projeto_Integrador/src/main/java/br/PI/Pizzaria/repository/ClienteRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/Projeto_Integrador/src/main/java/br/PI/Pizzaria/repository/cliente/ClienteRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Projeto_Integrador/src/main/java/br/PI/Pizzaria/repository/EnderecoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/Projeto_Integrador/src/main/java/br/PI/Pizzaria/repository/endereco/EnderecoRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Projeto_Integrador/src/main/java/br/PI/Pizzaria/repository/ImagemProdutoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/Projeto_Integrador/src/main/java/br/PI/Pizzaria/repository/imagem/ImagemProdutoRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Projeto_Integrador/src/main/java/br/PI/Pizzaria/repository/ItemPedidoRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Projeto_Integrador/src/main/java/br/PI/Pizzaria/repository/PedidoRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Projeto_Integrador/src/main/java/br/PI/Pizzaria/repository/ProdutoRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Projeto_Integrador/src/main/java/br/PI/Pizzaria/repository/UsuarioRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/Projeto_Integrador/src/main/java/br/PI/Pizzaria/repository/usuario/UsuarioRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Projeto_Integrador/src/main/java/br/PI/Pizzaria/service/CarrinhoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Projeto_Integrador/src/main/java/br/PI/Pizzaria/service/carrinho/CarrinhoService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Projeto_Integrador/src/main/java/br/PI/Pizzaria/service/ProdutoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Projeto_Integrador/src/main/java/br/PI/Pizzaria/service/produto/ProdutoService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Projeto_Integrador/src/main/java/br/PI/Pizzaria/service/UsuarioService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Projeto_Integrador/src/main/java/br/PI/Pizzaria/service/usuario/UsuarioService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Projeto_Integrador/src/main/java/br/PI/Pizzaria/service/authenticator/ClienteService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Projeto_Integrador/src/main/java/br/PI/Pizzaria/service/cliente/ClienteService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Projeto_Integrador/src/main/java/br/PI/Pizzaria/service/authenticator/LoginInterceptor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Projeto_Integrador/src/main/java/br/PI/Pizzaria/service/authenticator/LoginInterceptorAppConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Projeto_Integrador/src/main/resources/templates/cadastroCliente.html" beforeDir="false" afterPath="$PROJECT_DIR$/Projeto_Integrador/src/main/resources/templates/cadastroCliente.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Projeto_Integrador/src/main/resources/templates/cadastroProduto.html" beforeDir="false" afterPath="$PROJECT_DIR$/Projeto_Integrador/src/main/resources/templates/cadastroProduto.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Projeto_Integrador/src/main/resources/templates/cadastroUsuario.html" beforeDir="false" afterPath="$PROJECT_DIR$/Projeto_Integrador/src/main/resources/templates/cadastroUsuario.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Projeto_Integrador/src/main/resources/templates/cardapio.html" beforeDir="false" afterPath="$PROJECT_DIR$/Projeto_Integrador/src/main/resources/templates/cardapio.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Projeto_Integrador/src/main/resources/templates/carrinho.html" beforeDir="false" afterPath="$PROJECT_DIR$/Projeto_Integrador/src/main/resources/templates/carrinho.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Projeto_Integrador/src/main/resources/templates/editarPedido.html" beforeDir="false" afterPath="$PROJECT_DIR$/Projeto_Integrador/src/main/resources/templates/editarPedido.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Projeto_Integrador/src/main/resources/templates/editarProduto.html" beforeDir="false" afterPath="$PROJECT_DIR$/Projeto_Integrador/src/main/resources/templates/editarProduto.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Projeto_Integrador/src/main/resources/templates/editarProdutoEstoq.html" beforeDir="false" afterPath="$PROJECT_DIR$/Projeto_Integrador/src/main/resources/templates/editarProdutoEstoq.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Projeto_Integrador/src/main/resources/templates/editarUsuario.html" beforeDir="false" afterPath="$PROJECT_DIR$/Projeto_Integrador/src/main/resources/templates/editarUsuario.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Projeto_Integrador/src/main/resources/templates/gerenciarPedidos.html" beforeDir="false" afterPath="$PROJECT_DIR$/Projeto_Integrador/src/main/resources/templates/gerenciarPedidos.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Projeto_Integrador/src/main/resources/templates/listaPedidos.html" beforeDir="false" afterPath="$PROJECT_DIR$/Projeto_Integrador/src/main/resources/templates/listaPedidos.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Projeto_Integrador/src/main/resources/templates/listar-produtos.html" beforeDir="false" afterPath="$PROJECT_DIR$/Projeto_Integrador/src/main/resources/templates/listar-produtos.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Projeto_Integrador/src/main/resources/templates/pedidoFinalizado.html" beforeDir="false" afterPath="$PROJECT_DIR$/Projeto_Integrador/src/main/resources/templates/pedidoFinalizado.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Projeto_Integrador/src/main/resources/templates/pizzaz.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Projeto_Integrador/src/main/resources/templates/resumoPedido.html" beforeDir="false" afterPath="$PROJECT_DIR$/Projeto_Integrador/src/main/resources/templates/resumoPedido.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Projeto_Integrador/src/main/resources/templates/selecionarEndereco.html" beforeDir="false" afterPath="$PROJECT_DIR$/Projeto_Integrador/src/main/resources/templates/selecionarEndereco.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Projeto_Integrador/src/main/resources/templates/selecionarPagamento.html" beforeDir="false" afterPath="$PROJECT_DIR$/Projeto_Integrador/src/main/resources/templates/selecionarPagamento.html" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/Projeto_Integrador" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Beatriz-Santos-Santana&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Beatriz-Santos-Santana/TESTE_PI.git&quot;,
+    &quot;accountId&quot;: &quot;c373a1af-098e-4ed7-be71-213ee829634b&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
+  <component name="ProjectId" id="2y4C2NtaLWwvBsYygwijNW1neDW" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "Spring Boot.PizzariaApplication.executor": "Run",
+    "git-widget-placeholder": "dev",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/BeatrizSantosSantana/Desktop/Projeto_Integrador/Projeto_Integrador/Projeto_Integrador",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration name="PizzariaApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="Pizzaria" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="br.PI.Pizzaria.PizzariaApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-a94e463ab2e7-intellij.indexing.shared.core-IU-243.25659.59" />
+        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-IU-243.25659.59" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c4475723-a176-4b35-8b8c-bca4c804a0de" name="Changes" comment="" />
+      <created>1749084250781</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1749084250781</updated>
+      <workItem from="1749084252023" duration="6781000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

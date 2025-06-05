@@ -3,49 +3,88 @@ Repositório referente ao nosso Projeto do PI do 4º semestre
 
 # Aqui estão listadas as telas do nosso projeto:
 
-Tela de Login:
+Tela de Login Usuário:
 
-![Tela de Login](/Telas/login.png)
 
-Tela de Cadastro:
+![Tela de Login Usuario](Telas/versãoFinal/Usuarios/loginBackoffice.png)
 
-![Tela de Login](Telas/cadastroUsuario.png)
 
-Tela de Acesso Negado:
+Tela de Cadastro Usuário:
 
-![Tela de Acesso Negado](Telas/acesso_negado.png)
+
+![Tela de Login](Telas/versãoFinal/Usuarios/cadastroUsuario.png)
+
 
 Tela de BackOffice Admin:
 
 
-![Tela de BackOffice Admin](Telas/adminDashboard.png)
+![Tela de BackOffice Admin](Telas/versãoFinal/Usuarios/dashboardAdmin.png)
+
 
 Tela de BackOffice Estoquista :
 
 
-![Tela de BackOffice Estoquista](Telas/estoqueDashboard.png)
+![Tela de BackOffice Estoquista](Telas/versãoFinal/Usuarios/dashboardEstoquista.png)
+
+
+Tela de Cadastro de Usuários Admin: 
+
+
+![Tela de Cadastro de Usuários - Admin ](Telas/versãoFinal/Usuarios/cadastroUsuario.png)
+
 
 Tela de Listagem de Usuários Admin :
 
 
-![Tela de Listagem de Usuários - Admin](Telas/usuarios.png)
-
-
-Tela de Listagem de Produtos Admin:
-
-
-![Tela de Listagem de Produtos - Admin](Telas/produtosAdmin.png)
-
-Tela de Listagem de Produtos Estoquista:
-
-
-![Tela de Listagem de Produtos - Estoquista](Telas/produtosEstoquista.png)
+![Tela de Listagem de Usuários - Admin](Telas/versãoFinal/Usuarios/adminUsuarios.png)
 
 
 Tela de Cadastro de Produtos:
 
 
-![Tela de Cadastro de Produtos ](Telas/cadastroProdutos.png)
+![Tela de Listagem de Cadastro Produtos - Admin](Telas/versãoFinal/Usuarios/cadastroProduto.png)
+
+
+Tela de Edição de Produtos 1:
+
+
+![Tela de Listagem de Edição Produtos - Admin](Telas/versãoFinal/Usuarios/editarProdutoAdmin1.png)
+
+
+Tela de Edição de Produtos 2:
+
+
+![Tela de Listagem de Edição Produtos - Admin](Telas/versãoFinal/Usuarios/editarProdutoAdmin2.png)
+
+
+Tela de Listagem de Produtos Admin:
+
+
+![Tela de Listagem de Produtos - Admin](Telas/versãoFinal/Usuarios/listaProdutosAdmin.png)
+
+
+Tela de Visualizar de Produtos Admin:
+
+
+![Tela de Visualizar Produtos - Admin](Telas/versãoFinal/Usuarios/visualizarProdutoAdmin.png)
+
+
+Tela de Listagem de Produtos Estoquista:
+
+
+![Tela de Listagem de Produtos - Estoquista](Telas/listaProdutosEstoq.png)
+
+
+Tela de Listagem de Visualizar Pedidos Estoquista:
+
+
+![Tela de Listagem de Pedidos - Estoquista](Telas/versãoFinal/Usuarios/listaPedidosEstoq.png)
+
+
+Tela de Listagem de Editar Pedidos Estoquista:
+
+
+![Tela de Editar Pedidos - Estoquista](Telas/versãoFinal/Usuarios/editarPedidoEstoq.png)
 
 
 
