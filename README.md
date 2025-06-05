@@ -63,7 +63,7 @@ Tela de Listagem de Produtos Admin:
 ![Tela de Listagem de Produtos - Admin](Telas/versãoFinal/Usuarios/listaProdutosAdmin.png)
 
 
-Tela de Visualizar de Produtos Admin:
+Tela de Visualizar Produtos Admin:
 
 
 ![Tela de Visualizar Produtos - Admin](Telas/versãoFinal/Usuarios/visualizarProdutoAdmin.png)
@@ -72,7 +72,7 @@ Tela de Visualizar de Produtos Admin:
 Tela de Listagem de Produtos Estoquista:
 
 
-![Tela de Listagem de Produtos - Estoquista](Telas/listaProdutosEstoq.png)
+![Tela de Listagem de Produtos - Estoquista](Telas/versãoFinal/Usuarios/listaProdutosEstoq.png)
 
 
 Tela de Listagem de Visualizar Pedidos Estoquista:
