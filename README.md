@@ -3,6 +3,8 @@ Repositório referente ao nosso Projeto do PI do 4º semestre
 
 # Aqui estão listadas as telas do nosso projeto:
 
+# Telas dos Usuários (Administrador e Estoquista)
+
 Tela de Login Usuário:
 
 
@@ -87,6 +89,7 @@ Tela de Listagem de Editar Pedidos Estoquista:
 ![Tela de Editar Pedidos - Estoquista](Telas/versãoFinal/Usuarios/editarPedidoEstoq.png)
 
 
+# Telas dos Clientes
 
 
 
